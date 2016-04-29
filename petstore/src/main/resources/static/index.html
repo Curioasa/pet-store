@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+    <title>Pet store</title>
+    <link href="css/angular-bootstrap.css" rel="stylesheet">
+    <link href="css/petstore.css" rel="stylesheet"/>
+    <link href="css/ng-tags-input.min.css" rel="stylesheet"/>
+
+    <script src="js/angular-bootstrap.js" type="text/javascript"></script>
+    <script src="js/app.js"></script>
+    <script src="js/effects.js"></script>
+    <script src="js/ng-tags-input.min.js"></script>
+    <script src="js/directives/petForm/petForm.js"></script>
+</head>
+
+<body ng-app="petStore" ng-cloak class="ng-cloak">
+<div ng-controller="navigation">
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-inner">
+                <a class="navbar-brand" ui-sref="home">Pet store</a>
+                <ul class="nav navbar-nav">
+                    <li ng-class="{active: $state.includes('home')}"><a ui-sref="home">Home</a></li>
+                    <li ng-class="{active: $state.includes('login')}"><a ui-sref="login" ng-hide="authenticated">Login</a></li>
+                    <li ng-show="authenticated"><a href="" ng-click="logout()">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div ui-view></div>
+</body>
