@@ -1,0 +1,42 @@
+<div ng-show="authenticated">
+    <div class="jumbotron intro text-center" id="main-section">
+        <div class="main">
+            <h1>Pet Store Application</h1>
+            <section class="home">
+                <div class="container">
+                    <div class="row row-eq-height">
+                        <div class="well panel col-lg-4"
+                             ng-class="{'col-lg-offset-1': authorization.write, 'col-lg-offset-4': !authorization.write}">
+                            <div class="alert alert-danger main-alert" ng-show="petNotFound">
+                                The pet with the specified id does not exist!
+                            </div>
+                            <h2 class="small-box-title">Search for an existing pet</h2>
+                            <p class="small-box-content">
+                                <label for="petId">Pet id: </label>
+                                <input type="text" class="input-lg" id="petId" name="petId" ng-model="petId"/>
+                            </p>
+                            <button type="button" class="btn btn-success" ng-click="showForm(false, petId)">
+                                Search &raquo;</button>
+                        </div>
+                        <div class="well col-lg-4 col-lg-offset-2 panel" ng-if="authorization.write">
+                            <h2 class="small-box-title">Add pet</h2>
+                            <p class="small-box-content">Fill in the details of the new pet and add it to the store!</p>
+                            <button type="button" class="btn btn-success" ng-click="showForm(true)">Go to creation
+                                form &raquo;</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <pet-form ng-if="formVisible" edit="editable" current-pet="currentPet"
+              write-access="authorization.write && editable" delete-access="authorization.write && !editable"/>
+</div>
+<div ng-show="!authenticated">
+    <div class="jumbotron intro text-center">
+        <div class="main">
+            <h1>Pet Store Application</h1>
+            <p>Login to manage the pets</p>
+        </div>
+    </div>
+</div>
